@@ -17,8 +17,8 @@ mkdir -p /var/www/html
   echo "<p>Web: <a href='$WEB_LINK'>$WEB_LINK</a></p>"
 } > /var/www/html/index.html
 
-# Start simple HTTP server on $PORT
+# Start web server on required Render port
 PORT=${PORT:-10000}
-echo "Starting web server on port $PORT..."
-python3 -m http.server "$PORT" --directory /var/www/html &
+echo "Starting web server on 0.0.0.0:$PORT..."
+python3 -m http.server "$PORT" --bind 0.0.0.0 --directory /var/www/html &
 tail -f /tmp/tmate.log
